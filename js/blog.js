@@ -17,6 +17,7 @@ let init = () => {
     function clickClosure(evt, elem) {
         evt.preventDefault();
         toggleArticle(elem);
+        window.scrollTo(0,0);
     }
 
     home.addEventListener('click', (e) => {clickClosure(e, document.getElementById("home"))});

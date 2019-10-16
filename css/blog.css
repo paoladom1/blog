@@ -176,3 +176,8 @@ article.show-article {
     width: 80%;
 }
 
+@media only screen and (min-width: 1440px){
+    .home-article {
+        padding: 120px;
+    }
+}
