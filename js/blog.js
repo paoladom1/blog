@@ -14,12 +14,17 @@ let init = () => {
         element.classList.toggle('show-article');
     }
 
-    home.addEventListener('click', () => {toggleArticle(document.getElementById("home"))});
-    day1.addEventListener('click', () => {toggleArticle(document.getElementById("day1"))});
-    day2.addEventListener('click', () => {toggleArticle(document.getElementById("day2"))});
-    day3.addEventListener('click', () => {toggleArticle(document.getElementById("day3"))});
-    day4.addEventListener('click', () => {toggleArticle(document.getElementById("day4"))});
-    day5.addEventListener('click', () => {toggleArticle(document.getElementById("day5"))});
+    function clickClosure(evt, elem) {
+        evt.preventDefault();
+        toggleArticle(elem);
+    }
+
+    home.addEventListener('click', (e) => {clickClosure(e, document.getElementById("home"))});
+    day1.addEventListener('click', (e) => {clickClosure(e, document.getElementById("day1"))});
+    day2.addEventListener('click', (e) => {clickClosure(e, document.getElementById("day2"))});
+    day3.addEventListener('click', (e) => {clickClosure(e, document.getElementById("day3"))});
+    day4.addEventListener('click', (e) => {clickClosure(e, document.getElementById("day4"))});
+    day5.addEventListener('click', (e) => {clickClosure(e, document.getElementById("day5"))});
 }
 
 window.onload = init

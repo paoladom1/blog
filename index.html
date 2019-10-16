@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/blog.css" />
+    <script src="./js/blog.js"></script>
     <title>Blog</title>
 </head>
 
@@ -15,24 +16,24 @@
     <div class="container">
         <header id="header">
             <nav class="main-nav">
-                <h1>blog</h1>
+                <h1 class="src-only">blog</h1>
                 <ul class="menu">
-                    <a href="#home">
+                    <a href="#home" id="menuHome">
                         <li>Inicio</li>
                     </a>
-                    <a href="#dia_1">
+                    <a href="#day1" id="menuDay1">
                         <li>Dia 1</li>
                     </a>
-                    <a href="#dia_2">
+                    <a href="#day2" id="menuDay2">
                         <li>Dia 2</li>
                     </a>
-                    <a href="#dia_3">
+                    <a href="#day3" id="menuDay3">
                         <li>Dia 3</li>
                     </a>
-                    <a href="#dia_4">
+                    <a href="#day4" id="menuDay4">
                         <li>Dia 4</li>
                     </a>
-                    <a href="#dia_5">
+                    <a href="#day5" id="menuDay5">
                         <li>Dia 5</li>
                     </a>
                 </ul>
@@ -42,77 +43,214 @@
             <div class="side-bar" id="side-bar">
                 <aside class="user-aside">
                     <img class="img-home" src="./img/user.jpg" alt="user" />
+                    <h2>Paola Dominguez</h2>
+                    <p>
+                        Estudiante de Ingenieria Informatica
+                    </p>
                     <div class="social-media-icons">
                         <a href="https://twitter.com/" target="_blank" class="fa fa-twitter"></a>
                         <a href="https://www.facebook.com/" target="_blank" class="fa fa-facebook"></a>
                         <a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DdQw4w9WgXcQ%26fbclid%3DIwAR3CLJ3wIcpnnajOyyuN0KkiR2Q2uUF2b4pQv0_VE8QaFiaCdLWgWBZ38QA&h=AT1TZ7xsznm5vcR_Dijiu7AjUjW_WMnGzqDlCciRf6bpBcY76CyU4Y7ql8W2zSflLKKGggc1z3xAfmkXBgZUisuZBR_7jYcPAmu_1nG9wf57Bjt3LRV8hTt_LeM"
                             target="_blank" class="fa fa-youtube"></a>
                     </div>
-                    <h2>Paola Dominguez</h2>
-                    <p>
-                        Estudiante de Ingenieria Informatica
-                    </p>
                 </aside>
             </div>
             <div class="articles">
-                <article class="show-article home-article" id="home">
+                <article class="article show-article home-article" id="home">
                     <img class="home-img" src="./img/home.png" alt="home-img">
-                    <h2> Blog: Una vision perversa </h2>
+                    <h2> Una visión perversa </h2>
+                    <p>
+                        Este blog trata sobre la actividad realizada para el laboratorio 5 de la materia 
+                        de Administración de Bases de Datos en el cual cada día de la semana, del 7 al 11
+                        de Octubre, se nos presentaban diferentes retos a realizar.
+                    </p>
                 </article>
-                <article class="article" id="dia_1">
+                <article class="article" id="day1">
                     <h3>Dia 1</h3>
                     <p>
-                        parrafo explicando ejercicio :(
+                        Trabajando con la base de datos que ya conocemos: ucasoft, se nos pidió
+                        validar el atributo DUI de la tabla miembro. Para lo cual se tenía
+                        que crear una función, la cual recibe el atributo como parámetro y retorna
+                        un booleano indicando si el atributo es correcto o no, además se debe validar
+                        que tenga la longitud, el formato y digito de comprobación correctos. 
                     </p>
-                    <img class="img-article" src="./img/ejercicio1.jpg" alt="sql-ejercicio-1" />
+                    <img class="img" src="./img/qr_magnaV.jpg" alt="qr-1" />
                     <p>
-                        otro parrafo
+                        Para empezar se crea una función que recibirá como parámetro el atributo DUI. 
+                        Lo que se hace en esta función es:
                     </p>
-                    <img class="img-article" src="./img/qr_magnaV.jpg" alt="qr-1" />
+                    <ol>
+                        <li>
+                            Por medio de un if se verifica la longitud de la cadena, si esta es diferente
+                            a 10 (10 es el numero de caracteres presentes en un DUI) se retorna falso.
+                            Lo cual indicaría que el atributo que fue recibido no es correcto. 
+                        </li>
+                        <li>
+                            En otra condición (else if) se verifica el formato del dui, para lo cual se hace
+                            uso de expresiones regulares, con lo cual se busca que una cadena de texto tenga 
+                            cierta combinación de caracteres. En este caso, se busca que tenga 8 números (0-9)
+                            seguido por un guión y luego otro número más ('[0-9]{8}-[0-9]'). Si el atributo no cumple esta condición
+                            se retornará falso. 
+                        </li>
+                        <li>
+                            Finalmente, en un else comprobará que el digito verificador sea correcto para lo cual 
+                            se hace uso del siguiente algoritmo:
+                            <img class="img" src="./img/algoritmo.png" alt="algoritmo"/>
+                            <ul>
+                                <li>Se declaran las variables: suma, resto, resta y contador.</li>
+                                <li>
+                                    La variable suma se inicializa en 0, mientras contador en 9 siendo la última 
+                                    posición de la cadena. De esta manera se inicia un loop, el cual terminará 
+                                    cuando contador llegue a 1.
+                                </li>
+                                <li>
+                                    Dentro del loop a la variable suma se le irá asignando la suma de cada digito
+                                    del dui multiplicado por la posición en la que se encuentra (la posición empezando
+                                    desde 9 hasta llegar a 2).
+                                </li>
+                                <li>
+                                    Para obtener el digito que se encuentra en cada posición se hace uso de substring,
+                                    la cual recibe tres parametros: la cadena principal de la que se extraerá el caracter,
+                                    La posición desde la cual iniciará la extracción (opcional) y el numero de caracteres 
+                                    que serán extraídos (opcional).
+                                </li>
+                                <li>
+                                    El resto se obtendrá del módulo 10 del resultado obtenido en la suma.
+                                </li>
+                                <li>
+                                    La resta se obtiene de 10 menos el resultado de resto.
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <img class="img-article" src="./img/ejercicio1.jpg" alt="sql-ejercicio-1" />
                 </article>
-                <article class="article" id="dia_2">
+                <article class="article" id="day2">
                     <h3>Dia 2</h3>
                     <p>
-                        parrafo hablando caquita
+                        Este día el ejercicio consistía en crear una función que retornara un trigger. Teniendo en cuenta la relación 
+                        que existe entre los miembros y el departamento en el que trabajan, y otra en sentido contrario para aquellos 
+                        miembros que son representantes del departamento, se debe evitar que una persona que trabaje en un departamento
+                        sea responsable de otro departamento.
                     </p>
-                    <img class="img-article" src="./img/ejercicio2.jpg" alt="sql-ejercicio-2" />
                     <p>
-                        otro parrafo
+                        Por un lado, la función deberá rechazar la inserción o actualización de un departamento con un representante que 
+                        no trabaje para dicho departamento, por otro lado, si hubiera una actualización del departamento en el que un 
+                        miembro trabaja, ésta deberá rechazarse si resultara que el miembro es el representante del mismo. 
                     </p>
-                    <img class="img-article" src="./img/qr_polideportivo.jpg" alt="qr-2" />
+                    <img class="img" src="./img/qr_polideportivo.jpg" alt="qr-2" />
+                    <ol>
+                        <li>
+                            Se declaran variables de tipo record, las cuales son similares a las variables tipo fila pero sin una estructura
+                            predefinida.
+                        </li>
+                        <li>
+                            En un if se verifica que tabla ha sido modificada, haciendo uso de TG_RELNAME, el cual indica el nombre de una tabla que causa la invocación de un 
+                            trigger. 
+                        </li>
+                        <li>
+                            Si la tabla mencionada anteriormente es 'departamento', se prosigue a hacer una subconsulta, en la que se verifica si el 
+                            dui del miembro representante es el mismo que el dui del miembro.
+                        </li>
+                        <li>
+                            Si la denominación del departamento no es la misma que la del miembro que se quiere hacer representante, se lanzará una 
+                            excepción.
+                        </li>
+                        <li>
+                            Si la tabla es 'miembro', se hace una consulta en la que se obtiene la cantidad de departamentos de la que el miembro es 
+                            representante, si este numero es diferente de 0 se levanta una excepción indicando que el miembro no puede cambiarse de 
+                            departamento porque ya es representante de uno.
+                        </li>
+                    </ol>
+                    <img class="img-article" src="./img/ejercicio2.jpg" alt="sql-ejercicio-2" />
                 </article>
-                <article class="article" id="dia_3">
+                <article class="article" id="day3">
                     <h3>Dia 3</h3>
                     <p>
-                        parrafo
+                        Para el ejercicio en este dia tambien se requería crear un trigger que actuara tanto en un INSERT como en un UPDATE a la tabla 
+                        departamento y sus subclases relacionadas. Cuando se hiciera un INSERT sobre la tabla tabla miembro habría que verificar la existencia 
+                        de tal miembro en su correspondiente subclase. Para eso se hizo un IF para cada subclase, donde se verificó que existiera un miembro con 
+                        el DUI del miembro insertado en la tabla NEW del trigger, y si este no existía en la subclase correspondiente, se muestra un error.
                     </p>
-                    <img class="img-article" src="img/ejercicio3.png" alt="sql-3" />
+                    <img class="img-article" src="./img/ejercicio3.png" alt="sql-3" />
+                    <img class="img-article" src="./img/ejercicio3.2.png" alt="sql3.2">
                     <p>
-                        otro parrafo
+                        El caso del UPDATE es un poco más complejo, pues requiere realizar un DELETE seguido por un INSERT a la subclase correspondiente con unas 
+                        validaciones extras, mostradas a continuación:
                     </p>
-                    <img class="img-article" src="./img/qr_aulasd.jpg" alt="qr-3" />
+                    <ol>
+                        <li>
+                            Ya existe un trigger que al borrar de una subclase (ingeniería, ventas o gestión) borra automáticamente de la superclase miembro.
+                        </li>
+                        <li>
+                            Hay otro trigger que impide que se inserte directo en la superclase para validar la totalidad de esa especialización así como que se respete 
+                            que la especialización es disjunta: esto implica que dentro de la función cuando se quiera insertar en una subclase tendrá que hacerse una 
+                            transacción con el correspondiente FK diferido.
+                        </li>
+                    </ol>
+                    <p>
+                        Para esto se tuvo que realizar el borrado normal y luego realizar un DEFERRED de un constraint de foreign key entre miembro y departamento, para poder 
+                        realizar el INSERT sin ningún problema.
+                    </p>
+                    <img class="img" src="./img/qr_aulasd.jpg" alt="qr-3" />
                 </article>
-                <article class="article" id="dia_4">
+                <article class="article" id="day4">
                     <h3>Dia 4</h3>
                     <p>
-                        parrafo
+                        El ejercicio para este día consistía en crear ciertos triggers para una especialización disjunta parcial, la cual tiene como superclase
+                        a la tabla proyectos y a la subclases: web, erp y venta_almacen.
                     </p>
-                    <img class="img-article" src="./img/terrazas.jpg" alt="img-terrazas" />
+                    <img class="img" src="./img/terrazas.jpg" alt="img-terrazas" />
                     <p>
-                        otro parrafo
+                        Se deben tomar en cuenta las siguientes cosas:
                     </p>
-                    <img class="img-article" src="./img/qr_terrazas.jpg" alt="qr-4" />
+                    <ul>
+                        <li>
+                            Como es disjunta hay que asegurar la independencia de los miembros de subclases de proyectos, y también la eliminación en la superclase tras el borrado en la subclase.
+                        </li>
+                        <li>
+                            Como la especialización no es total, en este caso sí puede haber objetos solamente en la superclase, pero atención, éstos deben tener código de  tipo 'O' o se deberá 
+                            rechazar la inserción, también se debe validar con los otros códigos que los objetos deben estar previamente en las subclases    correspondientes, o se debe rechazar 
+                            la operación. Por suerte ya hay un trigger que impide el ingreso de un proyecto cuyo código no sea válido, así que nos podemos ahorrar ese trabajo.
+                        </li>
+                    </ul>
+                    <p>
+                        Para este ejercicio se debe desarrollar:
+                    </p>
+                    <ol>
+                        <li>
+                            Una función que cuando la elimine a algún elemento de las subclases lo eliminen automáticamente de la superclase. Los triggers para lanzarla son los siguientes: 
+                            <img class="img" src="./img/trigger.png" alt="trigger">
+                        </li>
+                        <li>
+                            Una función que, dado que la especialización es disjunta, garantice que no pueda existir el mismo objeto en más de una subclase.
+                            <img class="img" src="./img/trigger2.png" alt="trigger">
+                        </li>
+                        <li>
+                            Una función para comprobación de que los proyectos están siendo introducidos en la subclase correcta. Es importante notar que aunque la especialización es parcial, 
+                            si los proyectos son de tipo Web, Venta_almacen o ERP, deben ser a la vez introducidos en la subclase correspondiente y en proyecto, como si fuera total. Para ello
+                            debe tomarse en cuenta que los respectivos FK de las subclases a la superclase son diferibles.
+                            <img class="img" src="./img/trigger3.png" alt="trigger">
+                        </li>
+
+                    </ol>
                 </article>
-                <article class="article" id="dia_5">
+                <article class="article" id="day5">
                     <h3>Dia 5</h3>
                     <p>
-                        parrafo
+                        Este día, viernes 11 de Octubre, fue el final de la actividad, y al fin se reveló la identidad de 
+                        Ale. Para esto fuimos convocados en el aula Magna V a las 5 de la tarde.
                     </p>
-                    <img class="img-article" src="./img/magnaV.jpg" alt="dia-5" />
+                    <img class="img" src="./img/qr_magnaV.jpg" alt="qr-5" />
                     <p>
-                        otro parrafo
+                        Revelación de la identidad de Ale.
                     </p>
-                    <img class="img-article" src="./img/qr_magnaV.jpg" alt="qr-5" />
+                    <img class="img" src="./img/revelacion.png" alt="identidad">
+                    <p>
+                        Kurt es asesinado por Ale.
+                    </p>
+                    <img class="img" src="./img/magnaV.jpg" alt="dia-5" />        
                 </article>
             </div>
         </main>
